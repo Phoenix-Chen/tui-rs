@@ -90,7 +90,7 @@ pub struct Wrap {
     /// Should leading whitespace be trimmed
     pub trim: bool,
     /// Should trailing whitespace be trimmed
-    pub trim_end: bool,
+    pub break_word: bool,
 }
 
 impl<'a> Paragraph<'a> {
@@ -164,8 +164,8 @@ impl<'a> Widget for Paragraph<'a> {
                 }))
         });
 
-        let mut line_composer: Box<dyn LineComposer> = if let Some(Wrap { trim, trim_end}) = self.wrap {
-            Box::new(WordWrapper::new(&mut styled, text_area.width, trim, trim_end))
+        let mut line_composer: Box<dyn LineComposer> = if let Some(Wrap { trim, break_word}) = self.wrap {
+            Box::new(WordWrapper::new(&mut styled, text_area.width, trim, break_word))
         } else {
             let mut line_composer = Box::new(LineTruncator::new(&mut styled, text_area.width));
             if let Alignment::Left = self.alignment {

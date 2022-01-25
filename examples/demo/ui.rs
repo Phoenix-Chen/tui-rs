@@ -293,7 +293,7 @@ where
             .fg(Color::Magenta)
             .add_modifier(Modifier::BOLD),
     ));
-    let paragraph = Paragraph::new(text).block(block).wrap(Wrap { trim: true, trim_end: true });
+    let paragraph = Paragraph::new(text).block(block).wrap(Wrap { trim: true, break_word: false });
     f.render_widget(paragraph, area);
 }
 
